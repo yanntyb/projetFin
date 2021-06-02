@@ -3,10 +3,14 @@
 session_start();
 
 require_once $_SERVER['DOCUMENT_ROOT'] . "/include/userRequire_once.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/Manager/ProjetManager.php";
 
 use App\Manager\UserManager;
 use App\Entity\User;
+use App\Manager\ProjetManager;
+
 $userManager = new UserManager();
+$projectManager = new ProjetManager();
 
 header('Content-Type: application/json');
 
@@ -35,6 +39,11 @@ switch($requestType) {
         if(isset($_GET["action"])){
             if($_GET["action"] === "followed"){
                 echo getFollowedUser($userManager);
+            }
+            if($_GET["action"] === "project"){
+                if(isset($_GET["id"])){
+                    echo getProjectUsers($projectManager, $_GET["id"]);
+                }
             }
         }
     default:
@@ -102,6 +111,18 @@ function getFollowedUser(UserManager $manager){
         $return[] = [
             "name" => $user->getName(),
             "id" => $user->getId()
+        ];
+    }
+    return json_encode($return);
+}
+
+function getProjectUsers(ProjetManager $manager , int $id){
+    $users = $manager->getProjectUsers($id);
+    $return = [];
+    foreach($users as $user){
+        $return[] = [
+            "name" => $user->getName(),
+            "link" => $user->getLien(),
         ];
     }
     return json_encode($return);

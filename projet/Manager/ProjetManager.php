@@ -3,6 +3,7 @@
 
 namespace App\Manager;
 
+use App\Entity\User;
 use App\Traits\GlobalManager;
 use App\Entity\Projet;
 use App\Manager\UserManager;
@@ -387,5 +388,23 @@ class ProjetManager
         $conn->bindValue(":link", $link);
         $conn->bindValue(":last", (new DateTime())->getTimestamp());
         $conn->execute();
+    }
+
+    public function getProjectUsers(int $id){
+        $conn = $this->db->prepare("SELECT name,lienGithub FROM user INNER JOIN projetuser as p ON p.projet_id = :id WHERE p.user_id = user.id");
+        $conn->bindValue(":id", $id);
+        $conn->execute();
+        $selected = $conn->fetchAll();
+        $users = [];
+        foreach($selected as $select){
+            if($select["lienGithub"] !== ""){
+                $user = new User();
+                $user
+                    ->setName($select["name"])
+                    ->setLien($select["lienGithub"]);
+                $users[] = $user;
+            }
+        }
+        return $users;
     }
 }

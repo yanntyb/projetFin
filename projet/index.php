@@ -92,4 +92,5 @@
 <script src="js/utils/showInput.js" type="module"></script>
 <script src="js/utils/showProfile.js" type="module"></script>
 <script src="js/utils/help.js" type="module"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </html>
