@@ -9,7 +9,6 @@ class Channel
 {
     use Entity;
 
-    private ?int $id;
     private ?string $name;
     private ?array $messages;
 
@@ -24,23 +23,6 @@ class Channel
         $this->id = $id;
         $this->name = $name;
         $this->messages = $messages;
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param int|null $id
-     */
-    public function setId(?int $id): Channel
-    {
-        $this->id = $id;
-        return $this;
     }
 
     /**

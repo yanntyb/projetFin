@@ -12,7 +12,10 @@ for(let link of links){
     })
 }
 
-//Show the random token sent by the api
+/**
+ * Show the random token sent by the api
+ * @param data
+ */
 function callback(data){
     let conv = new MessageAll();
     conv.parent.className = "convLink";
