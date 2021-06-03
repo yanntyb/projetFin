@@ -90,3 +90,13 @@
 .changeForm:hover{
     cursor: pointer;
 }
+
+@media screen and (max-width: 600px) {
+    .formContent{
+        width:100%;
+        height: 50%;
+    }
+    #connectTitle{
+        top: 0 !important;
+    }
+}

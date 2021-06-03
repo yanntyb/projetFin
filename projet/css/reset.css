@@ -67,3 +67,18 @@ h1:hover{
 i{
     z-index: 10;
 }
+
+@media screen and (max-width: 600px){
+    #projet {
+        width: 20vw !important;
+    }
+    #data{
+        width: 30vw;
+    }
+    #sendTo{
+        width: 220px !important;
+    }
+    #chat{
+        width: 100% !important;
+    }
+}

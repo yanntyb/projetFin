@@ -407,4 +407,18 @@ class ProjetManager
         }
         return $users;
     }
+
+    public function getRealLink(int $id){
+        $conn = $this->db->prepare("SELECT link FROM projet WHERE id = :id");
+        $conn->bindValue(":id", $id);
+        $conn->execute();
+        return $conn->fetch()["link"];
+    }
+
+    public function updateLink(string $new, int $id){
+        $conn = $this->db->prepare("UPDATE projet SET link = :link WHERE id = :id");
+        $conn->bindValue(":link", $new);
+        $conn->bindValue(":id", $id);
+        $conn->execute();
+    }
 }

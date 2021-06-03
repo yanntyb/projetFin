@@ -13,7 +13,7 @@ $manager = new ProjetManager();
 switch($requestType) {
     case 'POST':
         $data = json_decode(file_get_contents('php://input'));
-        if(isset($_GET)){
+        if(isset($_GET, $_GET["action"])){
             if($_GET["action"] === "new"){
                 addProject($manager, $data->name);
                 break;
@@ -28,6 +28,10 @@ switch($requestType) {
             }
             if($_GET["action"] === "delete"){
                 deleteProject($manager, $data->id);
+                break;
+            }
+            if($_GET["action"] === "updateLink"){
+                updateLink($manager, $data->link, $data->id);
                 break;
             }
         }
@@ -71,4 +75,8 @@ function deleteProject(ProjetManager $manager, int $id){
 
 function addUserToProject(ProjetManager $manager){
 
+}
+
+function updateLink(ProjetManager $manager, string $new, int $id){
+    $manager->updateLink($new, $id);
 }

@@ -17,5 +17,5 @@ function callback(){
     convHelp.resetContent();
     convHelp.setFirstContent("<div id='sendTo'>Help</div>")
     convHelp.parent.className = "";
-    convHelp.showSingle({"pseudo" : "server", "message": "message","date": ""});
+    convHelp.showSingle({"pseudo" : "server", "message": "TODO help message","date": ""});
 }

@@ -46,7 +46,8 @@ $adminFlag = false;
                 <i data-id="<?= $projet->getId() ?>" class="fas fa-link inviteToServer"></i><?php
             }
             if($admin){?>
-                <i data-id="<?= $projet->getId() ?>" class="fas fa-plus addChannel"></i><?php
+                <i data-id="<?= $projet->getId() ?>" class="fas fa-plus addChannel"></i>
+                <i data-id="<?= $projet->getId() ?>" class="fas fa-cogs modifyLink"></i><?php
             }
             else{if(!$admin && !$ask){?>
             <i data-id="<?= $projet->getId() ?>" class="fas fa-user-shield askForAdmin"></i><?php
@@ -71,9 +72,10 @@ $adminFlag = false;
 <script src="./js/classes/Channel.js" type="module"></script>
 <script src="./js/classes/Users.js" type="module"></script>
 <?php if($ask){?>
-<script src="./js/utils/projectAdmission.js" type="module"></script><?php
+    <script src="./js/utils/projectAdmission.js" type="module"></script><?php
 }
 if($adminFlag){?>
-<script src="./js/utils/addChannel.js" type="module"></script>
-<script src="./js/utils/sendInvitation.js" type="module"></script><?php
+    <script src="./js/utils/addChannel.js" type="module"></script>
+    <script src="./js/utils/sendInvitation.js" type="module"></script>
+    <script src="./js/utils/modifProjectLink.js" type="module"></script><?php
 }

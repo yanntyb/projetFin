@@ -34,7 +34,6 @@ function callback(){
     if(input.value.length > 0){
         if(!message){
             conv.showSingle({"pseudo": "user", "message": input.value, "date": getDate(), "sent" : "true"});
-            token = true;
             let req = new Request("project/get.php",callbackReq);
             req.resetLink();
             req.link += "?action=checkToken&token=" + input.value;

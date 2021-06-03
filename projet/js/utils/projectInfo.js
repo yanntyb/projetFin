@@ -2,7 +2,7 @@ import {Request} from "../classes/Request.js";
 import {MessageAll} from "../classes/MessageAll.js";
 import {getDate} from "./fonctionUtils.js";
 
-let reqProjectName = new Request("project/get.php", setProjectName);
+let reqProjectName = new Request("project/get.php", setProjectLink);
 let perpage = 100;
 
 let events = [];
@@ -25,7 +25,8 @@ for(let info of infos){
     })
 }
 
-function setProjectName(data){
+//Set project link and get event according to this link
+function setProjectLink(data){
     let reqInfo = new Request("", callbackInfo);
     reqInfo.get("https://api.github.com/repos/" + data.link + "/events?page=0&per_page="+ perpage);
     page ++;
@@ -33,69 +34,98 @@ function setProjectName(data){
 }
 
 
+//Set events array with data received
 function callbackInfo(data){
     events = [];
     graph.parent.className = "graphConv";
+    //If data received is Iterable then it mean that the project's link is good and the github request returned what we want
     if(isIterable(data)){
         for(let event of data){
             events.push([event["type"], event["actor"]["login"], event["created_at"]]);
         }
-        let userReq = new Request("user/get.php", displayGraph);
-        userReq.resetLink()
-        userReq.link += "?action=project&id=" + id;
-        userReq.get();
+        //If there is event then display the graphic
+        if(events.length > 0 ){
+            displayGraph();
+        }
+        else{
+            graph.resetContent();
+            graph.setFirstContent("<div id='sendTo'>Last's events on project's github repository</div>")
+            graph.showSingle({"pseudo": "server", "message" : "Project isn't linked to a valide github repository or have no event", "date" : getDate()})
+        }
+
     }
     else{
         graph.resetContent();
         graph.setFirstContent("<div id='sendTo'>Last's events on project's github repository</div>")
-        graph.showSingle({"pseudo": "server", "message" : "Project isn't link to a valide github repository", "date" : getDate()})
+        graph.showSingle({"pseudo": "server", "message" : "Project isn't linked to a valide github repository", "date" : getDate()})
     }
 }
 
-function displayGraph(datas){
-    let names = [];
-    let links = []
+//Display a graph showing all user's participation to project
+function displayGraph(){
+    let users = [];
     let usersEvent = [];
     let backgroundcolor = [];
-    for(let user of datas){
-        names.push(user.name);
-        links.push(user.link);
-        usersEvent.push(0);
+    //Setup usernames
+    for(let event of events){
+        if(!users.includes(event[1])){
+            users.push(event[1]);
+        }
+    }
+    for(let user of users){
+        //Create a random rgb color
         var r = () => Math.random() * 256 >> 0;
         var color = `rgb(${r()}, ${r()}, ${r()})`;
-
         backgroundcolor.push(color);
-    }
-    for(let i = 0; i < links.length; i++){
+
+        //Set event's number according to username
         for(let event of events){
-            if(event[1] === links[i]){
-                usersEvent[i]++;
+            if(event[1] === user){
+                let keys = Object.keys(usersEvent);
+                if(!keys.includes(user)){
+                    usersEvent[user] = 1;
+                }
+                else{
+                    usersEvent[user]++;
+                }
             }
         }
     }
+
+    //Set array values
+    usersEvent = Object.keys(usersEvent).map(k => usersEvent[k])
+
     graph.resetContent();
     graph.setFirstContent("<div id='sendTo'>Last's events on project's github repository</div>")
+
+    //Create a <canvas> where graph will be displayed
     graph.showSingle({"pseudo": "server", "message" : "<div><canvas id='graph'></canvas></div>", "date": getDate()});
     const data = {
-        labels: names,
+        labels: users,
         datasets: [{
             label: "Lasts Project's events",
             backgroundColor: backgroundcolor,
             borderColor: 'rgb(255, 99, 132)',
-            data: usersEvent
+            data: usersEvent,
+            borderWidth: 0,
         }]
     };
     const config = {
         type: 'pie',
         data: data,
+
     };
-    let myChart = new Chart(
-        document.getElementById('graph'),
-        config
-    );
+
+    //Create the graphics according to the config
+    if(events.length > 0){
+       (new Chart(
+            document.getElementById('graph'),
+            config
+        ));
+    }
 }
 
-
+//Check if an object is iterable
 function isIterable(obj) {
     // checks for null and undefined
     if (obj == null) {
@@ -103,3 +133,4 @@ function isIterable(obj) {
     }
     return typeof obj[Symbol.iterator] === 'function';
 }
+//

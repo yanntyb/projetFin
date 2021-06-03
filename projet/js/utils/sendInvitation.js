@@ -17,5 +17,6 @@ function callback(data){
     let conv = new MessageAll();
     conv.parent.className = "convLink";
     conv.resetContent();
+    conv.setFirstContent("<div id='sendTo'>Invitation link</div>");
     conv.showSingle({"pseudo": "server", "message": "Token d'invitation au serveur : " + data});
 }

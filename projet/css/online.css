@@ -49,3 +49,9 @@
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
+
+@media screen and (max-width: 600px){
+    #users{
+        width: 20vw;
+    }
+}

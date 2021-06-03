@@ -26,6 +26,9 @@ switch($requestType) {
                 if($_GET["action"] === "name"){
                     echo projectLink($manager, $_GET["id"]);
                 }
+                if($_GET["action"] === "realLink"){
+                    echo getRealLink($manager, $_GET["id"]);
+                }
             }
             else{
                 $managerUser = new UserManager();
@@ -128,5 +131,10 @@ function checkToken(ProjetManager $manager, string $link){
 function projectLink(ProjetManager $manager, int $id){
     $result = $manager->getProjectLink($id);
     return json_encode($result);
+}
+
+function getRealLink(ProjetManager $manager, int $id){
+    $result = $manager->getRealLink($id);
+    return json_encode(["link" => $result ]);
 }
 

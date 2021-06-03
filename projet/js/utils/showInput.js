@@ -11,7 +11,7 @@ form.style.display = "none"
 function callback(mutationsList) {
     mutationsList.forEach(mutation => {
         if (mutation.attributeName === 'class') {
-            if(chat.className === ""){
+            if(chat.className === "" || chat.className === "graphConv"){
                 form.style.display = "none";
             }
             else{
