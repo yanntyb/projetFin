@@ -73,12 +73,28 @@ i{
         width: 20vw !important;
     }
     #data{
-        width: 30vw;
+        width: 40vw;
     }
     #sendTo{
-        width: 220px !important;
+        width: 40vw !important;
+        height: min-content !important;
     }
     #chat{
         width: 100% !important;
+    }
+    #channels{
+        width: 15vw !important;
+    }
+    .profile #name {
+        max-width: 100%;
+    }
+    #form input {
+        width: 80%;
+    }
+    #form, #form > * {
+        z-index: 10;
+    }
+    .formContent {
+        height: 36% !important;
     }
 }

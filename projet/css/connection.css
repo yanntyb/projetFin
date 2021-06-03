@@ -91,6 +91,10 @@
     cursor: pointer;
 }
 
+#form input {
+    width: 80%;
+}
+
 @media screen and (max-width: 600px) {
     .formContent{
         width:100%;
