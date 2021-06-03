@@ -27,7 +27,7 @@ Profile.prototype.show = function(){
             <h2>Bio</h2>
             <div id="userBio">${this.data.bio}</div>
             <hr class="profileSeparation">
-            <div id="userLink">Lien github : <a href="https://github.com/${this.data.lien}/">${this.data.lien}</a></div>
+            <div id="userLink">Profile github : <a id="link" href="https://github.com/${this.data.lien}/">${this.data.lien}</a></div>
             
         </div>
     `
@@ -43,6 +43,7 @@ Profile.prototype.show = function(){
                 let arrayOfDiv = [];
                 arrayOfDiv.push(document.getElementById("userName"));
                 arrayOfDiv.push(document.getElementById("userBio"));
+                arrayOfDiv.push(document.getElementById("link"));
                 arrayOfDiv.push(document.querySelector("#userLink > div"));
                 for(let div = 0; div < arrayOfDiv.length ; div++){
                     let input = document.createElement("input");
@@ -58,10 +59,19 @@ Profile.prototype.show = function(){
                 this.userModifFlag = false;
                 let arrayOfInput = document.querySelectorAll("#userProfileTop input");
                 for(let input of arrayOfInput){
-                    let div = document.createElement("div");
-                    div.id = input.name;
-                    div.innerHTML = input.value;
-                    input.replaceWith(div);
+                    if(input.name === "link"){
+                        let a = document.createElement("a");
+                        a.href = "https://github.com/" + input.value;
+                        a.innerHTML = input.value;
+                        input.replaceWith(a);
+                    }
+                    else{
+                        let div = document.createElement("div");
+                        div.id = input.name;
+                        div.innerHTML = input.value;
+                        input.replaceWith(div);
+                    }
+
                 }
 
                 let reqModifProfile = new Request("user/post.php");
@@ -70,7 +80,7 @@ Profile.prototype.show = function(){
 
                 let name = document.getElementById("userName").innerHTML;
                 let bio = document.getElementById("userBio").innerHTML;
-                let link = document.querySelector("#userLink > div").innerHTML;
+                let link = document.querySelector("#userLink > a").innerHTML;
                 reqModifProfile.setData({"name" : name, "bio" : bio, "id": this.data.id, "link": link});
                 reqModifProfile.send();
             }

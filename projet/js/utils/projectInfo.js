@@ -49,14 +49,14 @@ function callbackInfo(data){
         }
         else{
             graph.resetContent();
-            graph.setFirstContent("<div id='sendTo'>Last's events on project's github repository</div>")
+            graph.setFirstContent("<div id='sendTo'>Lasts events on project's github repository</div>")
             graph.showSingle({"pseudo": "server", "message" : "Project isn't linked to a valide github repository or have no event", "date" : getDate()})
         }
 
     }
     else{
         graph.resetContent();
-        graph.setFirstContent("<div id='sendTo'>Last's events on project's github repository</div>")
+        graph.setFirstContent("<div id='sendTo'>Lasts events on project's github repository</div>")
         graph.showSingle({"pseudo": "server", "message" : "Project isn't linked to a valide github repository", "date" : getDate()})
     }
 }
@@ -96,7 +96,7 @@ function displayGraph(){
     usersEvent = Object.keys(usersEvent).map(k => usersEvent[k])
 
     graph.resetContent();
-    graph.setFirstContent("<div id='sendTo'>Last's events on project's github repository</div>")
+    graph.setFirstContent("<div id='sendTo'>Last events on project's github repository</div>")
 
     //Create a <canvas> where graph will be displayed
     graph.showSingle({"pseudo": "server", "message" : "<div><canvas id='graph'></canvas></div>", "date": getDate()});

@@ -39,6 +39,5 @@ function callback(data){
     let profile = new Profile();
     setDivZindex(1,profile.div);
     profile.data = data;
-    console.log("ok");
     profile.show();
 }
