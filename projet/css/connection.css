@@ -102,5 +102,6 @@
     }
     #connectTitle{
         top: 0 !important;
+        font-size: 150%;
     }
 }

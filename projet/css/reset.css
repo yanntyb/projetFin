@@ -97,4 +97,19 @@ i{
     .formContent {
         height: 36% !important;
     }
+    .menu-item {
+        max-width: 20% !important;
+    }
+    #menu {
+        height: 10vh !important;
+    }
+    #users{
+        position: relative !important;
+    }
+    #users ul {
+        top: 0 !important;
+    }
+    .projetCont{
+        margin-bottom: 30% !important;
+    }
 }

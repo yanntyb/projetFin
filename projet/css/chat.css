@@ -178,4 +178,7 @@
     .sent .text{
         margin-right: 0;
     }
+    #sendMessageBox{
+        width: 100%;
+    }
 }
