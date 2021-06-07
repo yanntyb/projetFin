@@ -5,8 +5,9 @@ let MessageSingle = function(data){
 }
 
 
-
-//set Content of single private message
+/**
+ * Set content of single private message
+ */
 MessageSingle.prototype.setContent = function(){
     if(this.data.sent) {
         this.div.className += " sent";

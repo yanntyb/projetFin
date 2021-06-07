@@ -73,7 +73,6 @@
 <script src="js/utils/fonctionUtils.js" type="module"></script>
 <script src="js/utils/infoClick.js"></script>
 <script src="js/classes/Profile.js" type="module"></script>
-<script src="js/classes/Request.js" type="module"></script>
 <script src="js/classes/sendMessage.js" type="module"></script>
 <script src="js/utils/sendMessageFunc.js" type="module"></script>
 <script src="js/classes/MessageSingle.js" type="module"></script>

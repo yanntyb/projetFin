@@ -7,7 +7,10 @@ let MessageAll = function(id){
     this.child = [];
 }
 
-//Debug
+/**
+ * Display all child to DOM
+ * @param data
+ */
 MessageAll.prototype.show = function(data){
     for(let message of data){
         this.child.push(new MessageSingle(message));
@@ -20,6 +23,7 @@ MessageAll.prototype.show = function(data){
         let text = child.div.getElementsByClassName("text")[0];
         let date = child.div.getElementsByClassName("date")[0];
 
+        //Set date position relative to text element
         date.style.height = getComputedStyle(text).height;
     }
 }

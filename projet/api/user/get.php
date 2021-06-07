@@ -116,6 +116,12 @@ function getFollowedUser(UserManager $manager){
     return json_encode($return);
 }
 
+/**
+ * Return project's users
+ * @param ProjetManager $manager
+ * @param int $id
+ * @return false|string
+ */
 function getProjectUsers(ProjetManager $manager , int $id){
     $users = $manager->getProjectUsers($id);
     $return = [];

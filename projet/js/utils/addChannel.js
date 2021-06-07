@@ -13,6 +13,7 @@ let alreadySend = false;
 for(let add of addChannel){
     add.addEventListener("click", () => {
         alreadySend = false;
+
         //Get server's name
         let serverName = add.parentNode.innerText;
         let submit = document.querySelector("input[type=submit]");
@@ -37,7 +38,9 @@ function callback(e){
     checkInput();
 }
 
-//Send request to api if the input value isnt empty
+/**
+ * Send request to api if the input value isnt empty
+ */
 function checkInput(){
     if(!alreadySend){
         if(conv.parent.className === "addChannelConv"){

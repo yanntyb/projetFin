@@ -6,7 +6,9 @@ let reqNewProject = new Request("project/post.php")
 let projectCont = document.getElementById("projet");
 
 
-//Event when a super_admin click on new serveur button (+)
+/**
+ * Event when a super_admin click on new serveur button (+)
+ */
 addProject.addEventListener("click", (e)=>{
     let input = document.createElement("input");
     input.placeholder = "Project name";

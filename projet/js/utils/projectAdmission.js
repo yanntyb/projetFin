@@ -13,7 +13,10 @@ for(let project of projects){
     })
 }
 
-//Show project asked information
+/**
+ * Show project asked information
+ * @param data
+ */
 function callback(data){
     let conv = new MessageAll();
     conv.resetContent();

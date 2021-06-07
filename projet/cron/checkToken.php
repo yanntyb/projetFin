@@ -8,4 +8,5 @@ use App\Manager\ProjetManager;
 
 $manager = new ProjetManager();
 
+//Check if invitation link is expired if so he is deleted
 $manager->checkLinkDuration();

@@ -4,6 +4,9 @@ let ChannelAll = function(id){
     this.childs = [];
 }
 
+/**
+ * Display all child element to the DOM
+ */
 ChannelAll.prototype.showAll = function(){
     this.parent.innerHTML = '';
     for(let child of this.childs){

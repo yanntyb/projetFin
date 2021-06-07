@@ -8,7 +8,10 @@ let Channel = function(id){
     this.child = [];
 }
 
-//Debug
+/**
+ * Debug function
+ * @param data
+ */
 Channel.prototype.show = function(data){
     for(let message of data){
         this.child.push(new MessageSingle(message));

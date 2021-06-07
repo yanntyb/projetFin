@@ -14,7 +14,7 @@ let displayTitle = document.getElementById("usersDisplay");
 let infos = document.getElementsByClassName("infoClick");
 let profileLinks = document.getElementsByClassName("profileLink");
 
-//Change title and ask information of the selected api
+//Change title and ask information of the selected api (followed users or project's users)
 displayTitle.addEventListener("click", () => {
     id += 1;
     if(id === 2){

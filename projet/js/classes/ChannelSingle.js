@@ -4,11 +4,18 @@ let ChannelSingle = function (id) {
 
 }
 
+/**
+ * Set data
+ * @param data
+ */
 ChannelSingle.prototype.setData = function(data){
     this.data = data;
     this.div.dataset.id = data["id"];
 }
 
+/**
+ * Append div to DOM
+ */
 ChannelSingle.prototype.addToDom = function(){
     this.div.innerHTML = "";
     this.div.innerHTML = `

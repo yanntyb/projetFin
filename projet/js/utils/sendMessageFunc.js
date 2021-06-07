@@ -1,6 +1,11 @@
 import {SendMessage} from "../classes/sendMessage.js";
 
-//Create an event on submit form element
+/**
+ * Create an event on submit form element
+ * @param chatClasse
+ * @param api
+ * @param data
+ */
 function sendMessageEvent(chatClasse,api, data = null){
     let submit = document.querySelector("#sendMessageForm input[type=submit]");
     let chat = document.getElementById("showMessage");
@@ -15,7 +20,13 @@ function sendMessageEvent(chatClasse,api, data = null){
         });
     }
 }
-//Create a sendMessage object that will send the value of the form input element
+
+/**
+ * Create a sendMessage object that will send the value of the form input element
+ * @param data
+ * @param api
+ * @param chatClasse
+ */
 function sendMessageFunction(data,api,chatClasse){
     let form = document.querySelector("#sendMessageForm form");
     let input = form.getElementsByTagName("input")[0];

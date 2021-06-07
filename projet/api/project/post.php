@@ -49,10 +49,6 @@ function addProject(ProjetManager $manager, string $name = ""){
     $manager->addProject(sanitize($name),sanitize($name));
 }
 
-function setProjectAdmin(ProjetManager $manager, int $id){
-
-}
-
 /**
  * Ask to a superAdmin for server creation
  * @param ProjetManager $manager
@@ -73,10 +69,12 @@ function deleteProject(ProjetManager $manager, int $id){
     $manager->deleteProject($id);
 }
 
-function addUserToProject(ProjetManager $manager){
-
-}
-
+/**
+ * Update project's link
+ * @param ProjetManager $manager
+ * @param string $new
+ * @param int $id
+ */
 function updateLink(ProjetManager $manager, string $new, int $id){
     $manager->updateLink($new, $id);
 }

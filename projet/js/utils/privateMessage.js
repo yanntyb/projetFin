@@ -37,8 +37,9 @@ let user2name = "";
 let icon = null;
 
 
-
-//Time out to show private message between 2 users
+/**
+ * Time out to show private message between 2 users
+ */
 function timeOutRecurePrivateMessage(){
     setTimeout(function(){
         if(user2 !== null && chat.className === "privateChat" ){
@@ -63,9 +64,10 @@ function timeOutRecurePrivateMessage(){
 }
 
 
-
-
-//Callback of get() methode
+/**
+ * Callback of get() methode to show top banner info (user 2 name)
+ * @param result
+ */
 function callback(result){
     try{
         scrollPostion = chat.scrollTop;
@@ -80,7 +82,10 @@ function callback(result){
 
 }
 
-//Set placeholder of send message input to the selected user
+/**
+ * Set placeholder of send message input to the selected user
+ * @param result
+ */
 function setUserPrivateMessageData(result){
     user2name = result.name;
     form.getElementsByTagName("input")[0].placeholder = "Envoyer un message a " + user2name;

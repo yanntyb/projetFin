@@ -12,6 +12,10 @@ for(let delet of deletes){
     })
 }
 
+/**
+ * Delet project with given id
+ * @param id
+ */
 function deleteProject(id){
     deleteReq.resetLink();
     deleteReq.link += "?action=delete";

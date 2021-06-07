@@ -19,7 +19,10 @@ for(let link of profileLinks){
     })
 }
 
-//Show profile that correspond to a certain id
+/**
+ * Show profile that correspond to a certain id
+ * @param d
+ */
 function showProfile(d){
     resetDataDivZindex("data");
     //If a profile is already showed then it's deleted
@@ -34,7 +37,10 @@ function showProfile(d){
 
 }
 
-//Callback of get() methode
+/**
+ * Callback of get() methode to show the profile with the api response
+ * @param data
+ */
 function callback(data){
     let profile = new Profile();
     setDivZindex(1,profile.div);

@@ -100,9 +100,6 @@ i{
     .menu-item {
         max-width: 20% !important;
     }
-    #menu {
-        height: 10vh !important;
-    }
     #users{
         position: relative !important;
     }

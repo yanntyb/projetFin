@@ -41,6 +41,11 @@ class ProjetManager
         return false;
     }
 
+    /**
+     * Return selected project property's
+     * @param int $id
+     * @return Projet
+     */
     public function getProjet(int $id){
         $conn = $this->db->prepare("SELECT * FROM projet WHERE id = :id");
         $conn->bindValue(":id", $id);
@@ -149,10 +154,10 @@ class ProjetManager
 
     /**
      * Create a project in database
-     * @param $name
-     * @param $message
+     * @param string $name
+     * @param string $message
      */
-    public function addProject($name, $message){
+    public function addProject(string $name, string $message){
         $conn = $this->db->prepare("INSERT INTO projet (name, link) VALUES (:name, :link)");
         $conn->bindValue(":name", $name);
         $conn->bindValue(":link", "link");
@@ -193,7 +198,7 @@ class ProjetManager
      * Return Project's user already in ask stats
      * @return array
      */
-    public function hasAskForProjec(){
+    public function hasAskForProjec() : array{
         $conn = $this->db->prepare("SELECT * FROM projet INNER JOIN projetuser ON projetuser.projet_id = projet.id INNER JOIN projetadmission ON projetadmission.projet_id = projet.id WHERE projetadmission.statue = 0 AND projetuser.user_id = :id ");
         $conn->bindValue(":id", $_SESSION["user1_id"]);
         $return = [];
@@ -213,7 +218,7 @@ class ProjetManager
      * @param int $id
      * @return array
      */
-    public function getAdmissionById(int $id){
+    public function getAdmissionById(int $id) :array{
         $conn = $this->db->prepare("SELECT user_id, message FROM projetadmission WHERE projet_id = :id");
         $conn->bindValue(":id", $id);
         if($conn->execute()){
@@ -229,7 +234,7 @@ class ProjetManager
      * Make project admit
      * @param int $id
      */
-    public function acceptProject(int $id){
+    public function acceptProject(int $id) {
         $conn = $this->db->prepare("UPDATE projetadmission SET statue = 1 WHERE projetadmission.projet_id = :id");
         $conn->bindValue(":id", $id);
         $conn->execute();
@@ -295,10 +300,10 @@ class ProjetManager
 
     /**
      * Check if an invitation token existe in database
-     * @param $link
+     * @param string $link
      * @return false|mixed
      */
-    public function checkLink($link){
+    public function checkLink(string $link){
         $conn = $this->db->prepare("SELECT * FROM projetlink WHERE link = :link");
         $conn->bindValue(":link", $link);
         $conn->execute();
@@ -315,7 +320,7 @@ class ProjetManager
     }
 
     /**
-     * Function used by o2switch setup CRON to delete token expired
+     * Function used by o2switch setup CRON to delete expired token
      */
     public function checkLinkDuration(){
         $conn = $this->db->prepare("SELECT * FROM projetlink");
@@ -364,9 +369,6 @@ class ProjetManager
         $conn->execute();
     }
 
-    public function checkAsk(int $id){
-    }
-
     /**
      * Return project link
      * @param int $id
@@ -381,16 +383,12 @@ class ProjetManager
         }
     }
 
-    public function updateProjectLinkVerif(int $id, string $link, int $verif){
-        $conn = $this->db->prepare("UPDATE projectLinkVerified (verif, lastLink, lastVerif) VALUES (:verif, :link, :last) WHERE projet_fk = :id");
-        $conn->bindValue(":verif", $verif);
-        $conn->bindValue(":id", $id);
-        $conn->bindValue(":link", $link);
-        $conn->bindValue(":last", (new DateTime())->getTimestamp());
-        $conn->execute();
-    }
-
-    public function getProjectUsers(int $id){
+    /**
+     * Return project's users
+     * @param int $id
+     * @return array
+     */
+    public function getProjectUsers(int $id) : array{
         $conn = $this->db->prepare("SELECT name,lienGithub FROM user INNER JOIN projetuser as p ON p.projet_id = :id WHERE p.user_id = user.id");
         $conn->bindValue(":id", $id);
         $conn->execute();
@@ -408,6 +406,11 @@ class ProjetManager
         return $users;
     }
 
+    /**
+     * Clone of getLink
+     * @param int $id
+     * @return mixed
+     */
     public function getRealLink(int $id){
         $conn = $this->db->prepare("SELECT link FROM projet WHERE id = :id");
         $conn->bindValue(":id", $id);
@@ -415,6 +418,11 @@ class ProjetManager
         return $conn->fetch()["link"];
     }
 
+    /**
+     * Modify a project's link
+     * @param string $new
+     * @param int $id
+     */
     public function updateLink(string $new, int $id){
         $conn = $this->db->prepare("UPDATE projet SET link = :link WHERE id = :id");
         $conn->bindValue(":link", $new);

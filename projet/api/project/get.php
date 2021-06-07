@@ -128,11 +128,23 @@ function checkToken(ProjetManager $manager, string $link){
     }
 }
 
+/**
+ * Return project's link
+ * @param ProjetManager $manager
+ * @param int $id
+ * @return false|string
+ */
 function projectLink(ProjetManager $manager, int $id){
     $result = $manager->getProjectLink($id);
     return json_encode($result);
 }
 
+/**
+ * Duplicate of projectLink
+ * @param ProjetManager $manager
+ * @param int $id
+ * @return false|string
+ */
 function getRealLink(ProjetManager $manager, int $id){
     $result = $manager->getRealLink($id);
     return json_encode(["link" => $result ]);

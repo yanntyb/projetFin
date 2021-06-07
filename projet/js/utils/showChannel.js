@@ -26,7 +26,10 @@ for(let project of projects){
     })
 }
 
-//Show channel of a selected project
+/**
+ * Show channel of a selected project
+ * @param datas
+ */
 function showChannel(datas){
     //Need array conversion to use "for of"
     datas = Object.values(datas[0]);
@@ -49,7 +52,10 @@ function showChannel(datas){
     }
 }
 
-//Set chat
+/**
+ * Setup chat banner with selected channel name
+ * @param data
+ */
 function setChat(data){
     let channel = new MessageAll();
     channel.resetContent();
@@ -58,7 +64,10 @@ function setChat(data){
     chat.scrollTop = scrollPosition;
 }
 
-//Set message send event and
+/**
+ * Set message send event and
+ * @param id
+ */
 function interval(id){
     setTimeout(()=>{
         if(chat.className === "channelMessage" && idFlag === id){

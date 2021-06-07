@@ -60,7 +60,10 @@ function callback(datas){
 }
 
 
-//Fonction that show question after the user made a sentence
+/**
+ * Fonction that check question after the user made a sentence
+ * @param chat
+ */
 function event(chat){
     if(input.value.length > 0){
         response.push(input.value);

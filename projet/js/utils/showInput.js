@@ -7,7 +7,10 @@ let connect = document.getElementById("connect");
 
 form.style.display = "none"
 
-//Catch class change on chat to display input only if its necessary
+/**
+ * Catch class change on chat to display input only if its necessary
+ * @param mutationsList
+ */
 function callback(mutationsList) {
     mutationsList.forEach(mutation => {
         if (mutation.attributeName === 'class') {
@@ -25,7 +28,9 @@ const mutationObserver = new MutationObserver(callback)
 
 mutationObserver.observe(chat, { attributes: true })
 
-//Only show welcome message when user is connected
+/**
+ * Only show welcome message when user is connected
+ */
 if(connect === null){
     let help = new MessageAll();
     help.resetContent();

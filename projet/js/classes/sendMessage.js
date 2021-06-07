@@ -5,11 +5,17 @@ let SendMessage = function (api){
     this.api = api;
 }
 
+/**
+ * Set data
+ * @param data
+ */
 SendMessage.prototype.setData = function (data){
     this.data = data;
 }
 
-//Send data to the selected api in POST with data gift
+/**
+ * Send data to the selected api in POST with
+ */
 SendMessage.prototype.send = function (){
     if(this.data !== null){
         let req = new Request(this.api + "/post.php");

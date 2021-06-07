@@ -12,6 +12,7 @@ class PrivateMessageManager
     use GlobalManager;
 
     /**
+     * Return an array that contain message between connected user and recipient one
      * @param int $user2
      * @return array
      */
@@ -45,6 +46,11 @@ class PrivateMessageManager
         return $messages;
     }
 
+    /**
+     * Insert a message to database between two users
+     * @param int $user2
+     * @param string $message
+     */
     public function sendMessage(int $user2, string $message){
         $conn = $this->db->prepare("INSERT INTO privatemessage (user1_id, user2_id, message, date) VALUES (:id1, :id2, :message, :date)");
         $conn->bindValue(":id1", $_SESSION["user1_id"]);

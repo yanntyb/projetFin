@@ -40,4 +40,3 @@ foreach($users as $user){
     }
 }
 
-?>

@@ -14,6 +14,7 @@ let sent = false;
 let reqGet = new Request("project/get.php",showConv)
 let conv = new MessageAll();
 
+//Event on modifyLink button
 for(let button of buttons){
     button.addEventListener("click", () => {
         id = button.dataset.id;
@@ -23,7 +24,10 @@ for(let button of buttons){
     })
 }
 
-//Show first message to display actual server link
+/**
+ * Show first message to display actual server link
+ * @param data
+ */
 function showConv(data){
     sent = false;
     conv.parent.className = "modifLink";
@@ -33,7 +37,10 @@ function showConv(data){
     reqInfo.get("https://api.github.com/repos/" + data.link + "/events?page=0");
 }
 
-//Show second message to display if the link is actually good or not
+/**
+ * Show second message to display if the link is actually good or not
+ * @param data
+ */
 function showLinkVerif(data){
 
     if("message" in data){
@@ -52,7 +59,9 @@ function showLinkVerif(data){
     }
 }
 
-//Ask user to set the new link of the repos
+/**
+ * Ask user to set the new link of the repos
+ */
 function callback(){
     if(!sent){
         if(input.value.length > 0 ){

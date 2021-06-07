@@ -10,9 +10,7 @@ let chat = document.getElementById("showMessage");
 
 let message = false;
 
-
-let checkAskReq = new Request("project/get.php");
-
+//Event when click on icon to ask to be admin
 for(let icon of icons){
     icon.addEventListener("click", () => {
         conv.resetContent();
@@ -30,6 +28,10 @@ for(let icon of icons){
     })
 }
 
+/**
+ * Callback function when click on submit button
+ * It will check if input isnt empty , if so a request is send to the api
+ */
 function callback(){
     if(input.value.length > 0){
         if(!message){

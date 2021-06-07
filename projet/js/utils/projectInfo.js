@@ -25,7 +25,10 @@ for(let info of infos){
     })
 }
 
-//Set project link and get event according to this link
+/**
+ * Set project link and get event according to this link
+ * @param data
+ */
 function setProjectLink(data){
     let reqInfo = new Request("", callbackInfo);
     reqInfo.get("https://api.github.com/repos/" + data.link + "/events?page=0&per_page="+ perpage);
@@ -34,7 +37,10 @@ function setProjectLink(data){
 }
 
 
-//Set events array with data received
+/**
+ * Set events array with data received
+ * @param data
+ */
 function callbackInfo(data){
     events = [];
     graph.parent.className = "graphConv";
@@ -61,7 +67,9 @@ function callbackInfo(data){
     }
 }
 
-//Display a graph showing all user's participation to project
+/**
+ * Display a graph showing all user's participation to project
+ */
 function displayGraph(){
     let users = [];
     let usersEvent = [];
@@ -125,7 +133,11 @@ function displayGraph(){
     }
 }
 
-//Check if an object is iterable
+/**
+ * Check if an object is iterable
+ * @param obj
+ * @returns {boolean}
+ */
 function isIterable(obj) {
     // checks for null and undefined
     if (obj == null) {

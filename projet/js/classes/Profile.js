@@ -10,7 +10,10 @@ let Profile = function(){
     this.userModifFlag = false;
 }
 
-//Show the profile page
+/**
+ * Show profile page
+ * @returns {boolean}
+ */
 Profile.prototype.show = function(){
     if(document.getElementById("profilePage") !== null){
         return false;
@@ -98,14 +101,20 @@ Profile.prototype.show = function(){
     close.addEventListener("click", closeFunc);
 }
 
-//Request to change the followButton stats (follow/unfollow)
+/**
+ * Request to change the followButton stats (follow/unfollow)
+ * @param id
+ */
 Profile.prototype.requestFollowButton = function(id){
     this.requestFollowGet.resetLink();
     this.requestFollowGet.link += "user=" + id + "&action=follow";
     this.requestFollowGet.get();
 }
 
-//Create the follow button
+/**
+ * Create the follow button
+ * @param data
+ */
 Profile.prototype.createFollowButton = function(data){
     let div = document.getElementById("userProfileTop");
     if(document.getElementById("userFollow")){
@@ -135,7 +144,10 @@ Profile.prototype.createFollowButton = function(data){
     })
 }
 
-//Update follow or unfollow user in database
+/**
+ * Update follow or unfollow user in database
+ * @param id
+ */
 function changeFollow(id){
     let request = new Request("user/post.php");
     request.resetLink();
@@ -144,7 +156,9 @@ function changeFollow(id){
 }
 
 
-//Try to remove profilePage if it exist
+/**
+ * Try to remove profilePage if it exist
+ */
 function closeFunc(){
     try{
         removeDiv(document.getElementById("profilePage"));

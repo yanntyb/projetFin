@@ -11,7 +11,9 @@ for(let help of helps){
     }
 }
 
-//Show help messages
+/**
+ * Show help messages
+ */
 function callback(){
     let convHelp = new MessageAll();
     convHelp.resetContent();

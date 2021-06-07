@@ -108,6 +108,7 @@
     margin: 2%;
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
     border-radius: 0px 15px 15px 15px;
+    overflow-wrap: break-word;
 }
 
 .date{
@@ -169,8 +170,9 @@
 @media screen and (max-width: 600px) {
     .messageContent .text{
         margin-left: 0;
-        max-width: 100%;
+        max-width: 92%;
         font-size: 1.4rem;
+
     }
     .messageContent .date {
         display: none;
@@ -180,5 +182,8 @@
     }
     #sendMessageBox{
         width: 100%;
+    }
+    .pseudo{
+        font-size: 1.3rem !important;
     }
 }

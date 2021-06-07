@@ -145,10 +145,10 @@ class UserManager
 
     /**
      * Return follow statue between session's user and a certain user
-     * @param $id
+     * @param  int $id
      * @return bool
      */
-    public function getFollow($id){
+    public function getFollow(int $id) : bool{
         $conn = $this->db->prepare("SELECT id FROM userfollow WHERE user1_id = :id1 AND user2_id = :id2");
         $conn->bindValue(":id1", $_SESSION["user1_id"]);
         $conn->bindValue(":id2", $id);
@@ -166,6 +166,7 @@ class UserManager
      * Modifie connected user's informations
      * @param string $name
      * @param string $bio
+     * @param string $link
      */
     public function modifyUser(string $name, string $bio, string $link){
         $conn = $this->db->prepare("UPDATE user SET bio = :bio, name = :name, lienGithub = :link  WHERE id = :id");
@@ -180,7 +181,7 @@ class UserManager
      * Get followed users of connected's one
      * @return array
      */
-    public function getFollowedUsers(){
+    public function getFollowedUsers() :array{
         $conn = $this->db->prepare("SELECT * FROM user INNER JOIN userfollow ON user.id = userfollow.user2_id WHERE userfollow.user1_id = :id ");
         $conn->bindValue(":id", $_SESSION["user1_id"]);
         if ($conn->execute()) {
@@ -198,6 +199,12 @@ class UserManager
         }
     }
 
+    /**
+     * Add a user to database
+     * @param string $mail
+     * @param string $pass
+     * @param string $name
+     */
     public function newUser(string $mail, string $pass, string $name){
         $conn = $this->db->prepare("INSERT INTO user (name, pass, mail) VALUES (:name, :pass, :mail)");
         $conn->bindValue(":name", $name);
@@ -205,8 +212,12 @@ class UserManager
         $conn->bindValue(":pass", password_hash($pass,PASSWORD_DEFAULT));
         $conn->execute();
     }
-    
-    public function getFollowedUser(){
+
+    /**
+     * Return user's followed
+     * @return array
+     */
+    public function getFollowedUser() :array{
         $conn = $this->db->prepare("SELECT u.id, u.name FROM user as u INNER JOIN userfollow ON user2_id = u.id WHERE user1_id = :id");
         $conn->bindValue(":id", $_SESSION["user1_id"]);
         $users = [];

@@ -7,16 +7,18 @@ let Users = function(data){
     this.parent = document.getElementById("channelUsers");
 }
 
+/**
+ * Set data
+ * @param data
+ */
 Users.prototype.setData = function(data){
     this.data = data;
 }
 
-//Debug
-Users.prototype.showData = function(){
-    console.log(this.data);
-}
 
-//Show user's names and add event on click to show icons (message and profile)
+/**
+ * Show user's names and add event on click to show icons (message and profile)
+ */
 Users.prototype.show = function(){
     this.parent.innerHTML = "<h1 class='usersTitle'>Project's users</h1>";
     for(let user of this.data){
@@ -34,16 +36,21 @@ Users.prototype.show = function(){
         this.parent.appendChild(div);
 
     }
+
+    //Request to get the profile
     let profileReqGet = new Request("user/get.php?",callback);
     let profile = new Profile();
 
     let profileLinks = document.getElementsByClassName("profileLink");
 
+    //Event when click on profile link
     for(let link of profileLinks){
         link.addEventListener("click", function(e){
             e.preventDefault();
             profileReqGet.resetLink();
             profileReqGet.link += "user=" + this.dataset.id + "&action=profile";
+
+            //Show profile of the clicked user's one
             showProfile(this.dataset.id);
         })
     }

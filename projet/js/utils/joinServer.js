@@ -28,6 +28,9 @@ link.addEventListener("click", (e) => {
     }
 })
 
+/**
+ * Show user's message
+ */
 function callback(){
     if(input.value.length > 0){
         //If user havent already send a token
@@ -42,6 +45,10 @@ function callback(){
     }
 }
 
+/**
+ * Show message according to token gift by the user
+ * @param data
+ */
 function callbackReq(data){
     if(data["check"]){
         conv.showSingle({"pseudo" : "server", "message": "Vous venez de rejoindre le server " + data["server"], "date" : getDate()});

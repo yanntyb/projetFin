@@ -8,18 +8,28 @@ let Request = function (link, callback, parentObject = null){
     this.parentObject = parentObject;
 }
 
+/**
+ * Stringify data
+ * @param data
+ * @returns {string}
+ */
 Request.prototype.toJson = function(data){
     return JSON.stringify(data);
 }
 
-//Send request to the specified api (this.link)
+/**
+ * Send request to the specified api (this.link)
+ */
 Request.prototype.send = function (){
     this.xhr.open('POST', this.link);
     this.xhr.setRequestHeader('Content-Type', 'application/json');
     this.xhr.send(this.toJson(this.data));
 }
 
-//Send request and execute callback function with result (this.onload)
+/**
+ * Send request and execute callback function with result (this.onload)
+ * @param link
+ */
 Request.prototype.get = function (link = this.link) {
     this.xhr.open("GET", link);
     this.xhr.setRequestHeader('Content-Type', 'application/json');
@@ -35,17 +45,18 @@ Request.prototype.get = function (link = this.link) {
     };
 }
 
-//set data sent in send prototype
+/**
+ * set data sent in send prototype
+ * @param data
+ */
 Request.prototype.setData = function(data){
     this.data = data;
 }
 
-//Debug
-Request.prototype.resetData = function(){
-    this.data = null;
-}
 
-//Set real link of the api
+/**
+ * Set real link of the api
+ */
 Request.prototype.resetLink = function(){
     this.link =  "/api/";
     this.link += this.folder;
