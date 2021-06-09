@@ -2,3 +2,9 @@
 <link rel="stylesheet" href="./css/menu.css">
 <link rel="stylesheet" href="./css/privateMessage.css">
 <link rel="stylesheet" href="./css/profile.css">
+<link rel="stylesheet" href="./css/projet.css">
+<link rel="stylesheet" href="./css/categories.css">
+<link rel="stylesheet" href="./css/chat.css">
+<link rel="stylesheet" href="./css/online.css">
+<link rel="stylesheet" href="./css/projectChannel.css">
+<link rel="stylesheet" href="./css/connection.css">

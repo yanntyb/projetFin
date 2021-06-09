@@ -17,7 +17,6 @@ ChannelSingle.prototype.setData = function(data){
  * Append div to DOM
  */
 ChannelSingle.prototype.addToDom = function(){
-    this.div.innerHTML = "";
     this.div.innerHTML = `
         <h1 class="channelName">${this.data.name}</h1>    
     `

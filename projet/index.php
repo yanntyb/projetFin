@@ -20,14 +20,8 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Disgit</title>
     <?php include "./include/cssGlobal.php" ?>
-    <link rel="stylesheet" href="./css/projet.css">
-    <link rel="stylesheet" href="./css/categories.css">
-    <link rel="stylesheet" href="./css/chat.css">
-    <link rel="stylesheet" href="./css/online.css">
-    <link rel="stylesheet" href="./css/projectChannel.css">
-    <link rel="stylesheet" href="./css/connection.css">
 </head>
 <body>
 
@@ -86,7 +80,6 @@
 <script src="js/utils/deletProject.js" type="module"></script>
 <script src="js/utils/sendInvitation.js" type="module"></script>
 <script src="js/utils/askAdminProject.js" type="module"></script>
-<script src="js/utils/connexionChange.js"></script>
 <script src="js/utils/resetInput.js"></script>
 <script src="js/utils/showInput.js" type="module"></script>
 <script src="js/utils/showProfile.js" type="module"></script>

@@ -9,8 +9,14 @@ const form = document.getElementById("sendMessageForm");
 let chat = document.getElementById("showMessage");
 
 let title = document.getElementById("usersDisplay");
+let scrollPostion;
 
-//MutationObserver is an object I use to catch innerHTML change on DOM element
+let user2 = null;
+let userSet = false;
+let user2name = "";
+
+
+//MutationObserver is an object I use to catch change on DOM element
 let observer = new MutationObserver(function() {
     //Set a event on every private chat links
     let links = document.getElementsByClassName("chatLink");
@@ -28,13 +34,7 @@ let observer = new MutationObserver(function() {
     }
 })
 
-let scrollPostion;
 
-let user2 = null;
-let userSet = false;
-let user2name = "";
-
-let icon = null;
 
 
 /**

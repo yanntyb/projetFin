@@ -190,8 +190,6 @@ class ProjetManager
         $conn->bindValue(":projetid", $id);
         $conn->bindValue(":userid", $_SESSION["user1_id"]);
         $conn->execute();
-
-
     }
 
     /**
@@ -199,7 +197,12 @@ class ProjetManager
      * @return array
      */
     public function hasAskForProjec() : array{
-        $conn = $this->db->prepare("SELECT * FROM projet INNER JOIN projetuser ON projetuser.projet_id = projet.id INNER JOIN projetadmission ON projetadmission.projet_id = projet.id WHERE projetadmission.statue = 0 AND projetuser.user_id = :id ");
+        $conn = $this->db->prepare("
+                                            SELECT * FROM projet 
+                                                INNER JOIN projetuser ON projetuser.projet_id = projet.id 
+                                                INNER JOIN projetadmission ON projetadmission.projet_id = projet.id 
+                                            WHERE projetadmission.statue = 0 
+                                              AND projetuser.user_id = :id ");
         $conn->bindValue(":id", $_SESSION["user1_id"]);
         $return = [];
         if($conn->execute()){

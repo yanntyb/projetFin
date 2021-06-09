@@ -17,7 +17,14 @@ class PrivateMessageManager
      * @return array
      */
     public function getMessage(int $user2): array{
-        $conn = $this->db->prepare("SELECT privatemessage.id as messageId, message, date, u.id as id, u.name as name1, u2.name as name2 FROM privatemessage INNER JOIN user as u ON privatemessage.user1_id = u.id INNER JOIN user as u2 ON privatemessage.user2_id = u2.id WHERE (privatemessage.user1_id = :id1 AND privatemessage.user2_id = :id2) OR (privatemessage.user2_id = :id1 AND privatemessage.user1_id = :id2) ORDER BY privatemessage.id ASC");
+        $conn = $this->db->prepare("
+                                            SELECT privatemessage.id as messageId, message, date, u.id as id, u.name as name1, u2.name as name2 
+                                            FROM privatemessage 
+                                                INNER JOIN user as u ON privatemessage.user1_id = u.id 
+                                                INNER JOIN user as u2 ON privatemessage.user2_id = u2.id 
+                                            WHERE (privatemessage.user1_id = :id1 AND privatemessage.user2_id = :id2) 
+                                               OR (privatemessage.user2_id = :id1 AND privatemessage.user1_id = :id2) 
+                                            ORDER BY privatemessage.id ASC");
         $conn->bindValue(":id1", $_SESSION["user1_id"]);
         $conn->bindValue(":id2", $user2);
         $conn->execute();
@@ -30,12 +37,6 @@ class PrivateMessageManager
             if(intval($select["id"]) === intval($_SESSION["user1_id"])){
                 $message
                     ->setSent(true);
-            }
-            //Set message seen to 1 witch mean that messages sent by the other user have been seen
-            else{
-                $connUpdate = $this->db->prepare("UPDATE privatemessage SET seen = 1 WHERE id = :id");
-                $connUpdate->bindValue(":id",$select["messageId"]);
-                $connUpdate->execute();
             }
             $message->setUsername($select["name1"]);
             $message

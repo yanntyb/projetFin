@@ -20,9 +20,6 @@ switch($requestType) {
                     echo getlink($manager, $_GET["id"]);
                     break;
                 }
-                if($_GET["action"] === "check"){
-                    echo checkAsk($manager, $_GET["id"]);
-                }
                 if($_GET["action"] === "name"){
                     echo projectLink($manager, $_GET["id"]);
                 }

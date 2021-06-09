@@ -3,7 +3,6 @@ let Request = function (link, callback, parentObject = null){
     this.folder = link;
     this.link = null;
     this.xhr = new XMLHttpRequest();
-    this.folderCorrect = false;
     this.onload = callback;
     this.parentObject = parentObject;
 }
@@ -36,11 +35,6 @@ Request.prototype.get = function (link = this.link) {
     this.xhr.send();
     this.xhr.onload = () => {
         let result = JSON.parse(this.xhr.responseText);
-        if(!this.folderCorrect){
-            this.folderCorrected = this.folder.split("/");
-            this.folderCorrected  = this.folderCorrected [this.folderCorrected .length - 2];
-            this.folderCorrect = true;
-        }
         this.onload(result);
     };
 }

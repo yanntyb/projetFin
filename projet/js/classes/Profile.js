@@ -1,5 +1,4 @@
 import {Request} from "./Request.js";
-import {removeDiv} from "../utils/fonctionUtils.js";
 
 let Profile = function(){
     this.div = document.createElement("div");
@@ -15,13 +14,16 @@ let Profile = function(){
  * @returns {boolean}
  */
 Profile.prototype.show = function(){
+    //If a profile page already exist then it's removed
     if(document.getElementById("profilePage") !== null){
-        return false;
+        closeFunc();
     }
+    //Append this.div to DOM then we can modify it
     this.parent.appendChild(this.div);
     if(this.data.lien.length < 1){
         this.data.lien = "Non renseigné";
     }
+    //Set div innerHTML according to this.data property
     this.div.innerHTML = `
         <div id="userProfileTop" data-id="${this.data.id}">
             <div id="userIcone"><img src="../../images/icone/${this.data.icon}"  alt=""></div>
@@ -33,10 +35,10 @@ Profile.prototype.show = function(){
             <div id="userLink">Profile github : <a id="link" href="https://github.com/${this.data.lien}/">${this.data.lien}</a></div>
             
         </div>
-    `
+    `;
 
     //If the Profile is the connected user's one then we can edit the profile page
-    //I replace all parts that can be modified to an input to modifie it in Ajax
+
     if(this.data.editable === "true"){
         this.div.innerHTML += "<div id='userModif'><i class=\"fas fa-cogs\"></i></div>";
         let userModif = document.getElementById("userModif");
@@ -44,6 +46,7 @@ Profile.prototype.show = function(){
             if(!this.userModifFlag){
                 this.userModifFlag = true;
                 let arrayOfDiv = [];
+                //I replace all parts that can be modified to an input to modifie it in Ajax
                 arrayOfDiv.push(document.getElementById("userName"));
                 arrayOfDiv.push(document.getElementById("userBio"));
                 arrayOfDiv.push(document.getElementById("link"));
@@ -90,6 +93,7 @@ Profile.prototype.show = function(){
 
         })
     }
+    //If profile isn't the connected one then i show the follow button with corresponding state
     else{
         this.requestFollowButton(this.data.id);
     }
@@ -132,7 +136,6 @@ Profile.prototype.createFollowButton = function(data){
     else{
         follow.innerHTML = "Unfollow";
     }
-    this.followDiv = follow;
 
     follow.appendChild(input);
     div.appendChild(follow);
@@ -161,7 +164,7 @@ function changeFollow(id){
  */
 function closeFunc(){
     try{
-        removeDiv(document.getElementById("profilePage"));
+        document.getElementById("profilePage").parentElement.removeChild(document.getElementById("profilePage"));
     }
     catch(e){}
 }

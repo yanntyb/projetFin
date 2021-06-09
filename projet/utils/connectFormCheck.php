@@ -6,10 +6,10 @@ use App\Manager\UserManager;
 session_start();
 if(isset($_POST, $_POST["mail"], $_POST["pass"])){
     $userManager = new UserManager();
-    $mail = sanitize($_POST["mail"]);
+    $mail = $_POST["mail"];
     $pass = $_POST["pass"];
     //Return User object or null if no user match with $mail
-    if(strlen($mail) > 0){
+    if(strlen($mail) > 0 && strlen($pass) > 0){
         $user = $userManager->getUserByMail($mail);
         //If given mail exist in database then I check if password correspond to database's one
         if(!is_null($user)){

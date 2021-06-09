@@ -6,13 +6,9 @@ let reqProjectName = new Request("project/get.php", setProjectLink);
 let perpage = 100;
 
 let events = [];
-let morePage = true
-let page = 1;
-let next = true;
 let id = 0;
 
 let graph = new MessageAll();
-
 
 let infos = document.getElementsByClassName("infoServe");
 
@@ -32,8 +28,6 @@ for(let info of infos){
 function setProjectLink(data){
     let reqInfo = new Request("", callbackInfo);
     reqInfo.get("https://api.github.com/repos/" + data.link + "/events?page=0&per_page="+ perpage);
-    page ++;
-    next = false;
 }
 
 

@@ -36,3 +36,4 @@
         </form>
     </div>
 </div>
+<script src="js/utils/connexionChange.js"></script>

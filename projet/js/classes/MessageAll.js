@@ -28,17 +28,26 @@ MessageAll.prototype.show = function(data){
     }
 }
 
-//Reset chat
+/**
+ * Reset chat
+ * @param user
+ */
 MessageAll.prototype.resetContent = function(user){
     this.parent.innerHTML = "";
 }
 
-//Set first content usualy channel name
+/**
+ * Set first content usualy channel name
+ * @param content
+ */
 MessageAll.prototype.setFirstContent = function(content){
     this.parent.innerHTML = content;
 }
 
-//Function to show a single message
+/**
+ * Function to show a single message
+ * @param data
+ */
 MessageAll.prototype.showSingle = function(data){
     let message = new MessageSingle(data);
     message.setContent();
